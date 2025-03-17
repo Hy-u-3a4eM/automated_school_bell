@@ -1,2 +1,2 @@
 .pio
-./src/.env.h
+/src/.env.h
