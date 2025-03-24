@@ -13,8 +13,7 @@
 #include "constants.h"
 #include "schedule.h"
 #include "structures.h"
-
-#define countof(a) (sizeof(a) / sizeof((a)[0]))
+#include "config.h"
 
 static EventGroupHandle_t s_event_group;
 
@@ -127,7 +126,7 @@ void sta_init(void) {
     EventBits_t bits = xEventGroupWaitBits(  s_event_group
                                            , STA_FAIL_BIT | STA_CONNECTED_BIT
                                            , pdFALSE
-                                           , pdFALSE                // TODO: А что здесь ставить-то?
+                                           , pdFALSE
                                            , portMAX_DELAY);
 
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
@@ -298,11 +297,4 @@ void app_main() {
         , nullptr
         , 5
         , nullptr);
-
-    // TODO: рефакторинг магических чисел
-    // TODO: обработка ошибок, включая NTP
-
-    // TODO: logv
-    // TODO: исправить время
-    // TODO: изменить функцию на подать_ток_на_реле()
 }
